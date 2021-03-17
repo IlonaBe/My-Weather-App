@@ -119,6 +119,9 @@ body {
   font-size: 13px;
   font-style: italic;
   font-weight: normal;
+}
+
+.footer a {
   color: #0b6fc2;
 }
 
