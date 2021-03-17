@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app 2</title>
+    <link rel="stylesheet" href="src/searchstyle.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="src/styles.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@500&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/6acc312212.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="card mx-auto text-light" id="weather-card">
+        <div class="card-body">
+            <div class="box">
+                <div class="container-1">
+                    <form id="search-form">
+                        <button class="btn">
+                            <img class="no-border" src="Images/search.png" width="22px" id="search-button" />
+                        </button>
+                        <input type="search" autocomlete="off" id="search" placeholder="Enter location" />
+                    </form>
+                    <button class="current-location">
+                        <img src="Images/location.png" alt="location" width="27px" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="card-group">
+                <div class="col-sm-7">
+                    <div class="card" id="current-city">
+                        <div class="card-body-city">
+                            <h1 class="card-title">
+                                Oslo
+                            </h1>
+                            <p class="card-text">
+                                Thu 11 Feb 13:00
+                            </p>
+                        </div>
+
+                        <div class="weather-now">
+                            <p></p>
+                            <span class="units">°C</span>
+                            <img src="Images/SunCloud.png" alt="SunCloud" width="100px" />
+                        </div>
+
+                        <div class="container" id="wind">
+                            <div class="row justify-content-md-center">
+                                <div class="col">
+                                    <img src="Images/rain.png" alt="umbrella" width="27" />
+                                    <span id="rain"></span> %
+                                </div>
+                                <div class="col">
+                                    <img src="Images/wind.png" alt="wind" width="28" />
+                                    <span id="windSpeed"></span> m/s
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="card" id="weather-hours">
+                        <div class="card-body-hours">
+                            <h5 class="card-title">
+                                Next hours
+                            </h5>
+
+                            <div class="container" id="next-hours">
+                                <div class="row row-cols-3">
+                                    <div class="col text-end">
+                                        15:00
+                                    </div>
+                                    <div class="col text-end">
+                                        -8°C
+                                    </div>
+                                    <div class="col text-start" id="hour-icon">
+                                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="40px" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container" id="next-hours">
+                                <div class="row row-cols-3">
+                                    <div class="col text-end">
+                                        18:00
+                                    </div>
+                                    <div class="col text-end">
+                                        -8°C
+                                    </div>
+                                    <div class="col text-start" id="hour-icon">
+                                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="40px" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container" id="next-hours">
+                                <div class="row row-cols-3">
+                                    <div class="col text-end">
+                                        21:00
+                                    </div>
+                                    <div class="col text-end">
+                                        -9°C
+                                    </div>
+                                    <div class="col text-start" id="hour-icon">
+                                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="40px" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container" id="next-hours">
+                                <div class="row row-cols-3">
+                                    <div class="col text-end">
+                                        00:00
+                                    </div>
+                                    <div class="col text-end">
+                                        -9°C
+                                    </div>
+                                    <div class="col text-start" id="hour-icon">
+                                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="40px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-group" id="next-days">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-text">Fri</p>
+                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" />
+                        <p class="card-text" id="degrees">-5°C/-9°C</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-text">Sat</p>
+                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" />
+                        <p class="card-text" id="degrees">-15°C/-19°C</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-text">Sun</p>
+                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" />
+                        <p class="card-text" id="degrees">-5°C/-9°C</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-text">Mon</p>
+                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" />
+                        <p class="card-text" id="degrees">-5°C/-9°C</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-text">Tue</p>
+                        <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" />
+                        <p class="card-text" id="degrees">-5°C/-9°C</p>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="footer">
+                <p>
+                    Open source code by Ilona Berzina
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/index.js"></script>
+</body>
+
+</html>
