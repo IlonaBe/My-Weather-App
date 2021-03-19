@@ -39,6 +39,7 @@ let month = months[now.getMonth()];
 dateAndTime.innerHTML = `${day} ${date}. ${month}, ${hours}:${minutes}`;
 
 function displayWeatherCondition(response) {
+  let weatherNowIcon = document.querySelector("#weatherNowIcon");
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector(".weather-now p").innerHTML = Math.round(
     response.data.main.temp
@@ -48,6 +49,13 @@ function displayWeatherCondition(response) {
   document.querySelector("#windSpeed").innerHTML = Math.round(
     response.data.wind.speed
   );
+
+  weatherNowIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  )
+  
+  console.log(response);
 }
 
 function searchCity(city) {
@@ -70,6 +78,7 @@ function searchLocation(position) {
 
   axios.get(apiUrl).then(displayWeatherCondition);
 }
+
 
 function getCurrentLocation(event) {
   event.preventDefault();
