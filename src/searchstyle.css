@@ -72,12 +72,6 @@ img[alt~="SunCloudSnow"] {
   margin-top: -10px;
 }
 
-img[alt~="SunCloud"] {
-  display: inline;
-  margin-left: 15px;
-  padding-top: -10px;
-}
-
 .current-location {
   margin-left: 10px;
   background-color: transparent;
