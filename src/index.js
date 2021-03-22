@@ -1,16 +1,6 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  let day = days[date.getDay()];
+function formatDays (timestamp) {
+  let now = new Date(timestamp);
+  let day = days [now.getDay()];
   return `${day} ${formatHours(timestamp)}`;
 }
 
@@ -27,22 +17,22 @@ function formatHours(timestamp) {
 
   return `${hours}:${minutes}`;
 }
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-];
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
+}
 
 
 function displayWeatherCondition(response) {
@@ -53,7 +43,6 @@ function displayWeatherCondition(response) {
   document.querySelector(".weather-now p").innerHTML = Math.round(
     response.data.main.temp
   );
-
   document.querySelector("#rain").innerHTML = response.data.main.humidity;
   document.querySelector("#windSpeed").innerHTML = Math.round(
     response.data.wind.speed
@@ -63,9 +52,8 @@ function displayWeatherCondition(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   )
-  
   console.log(response);
-}
+  }
 
 function displayForecast(response){
   let forecastHours = document.querySelector("#hours-forecast");
@@ -75,8 +63,7 @@ function displayForecast(response){
 
   for (let index = 0; index < 4; index++) {
     forecast = response.data.list[index];
-        forecastHours.innerHTML += `
-        
+        forecastHours.innerHTML += `        
           <div class="row row-cols-3">                                    
               <div class="col text-end">
                  ${formatHours(forecast.dt * 1000)}
@@ -87,14 +74,40 @@ function displayForecast(response){
               <div class="col text-start" id="hour-icon">
                 <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="SunCloudSnow" width="40px" />
               </div>
-            </div>
-         
+            </div>         
       `;  
     }
   }
 
+  //test
 
+  function showForecastDays(response){
+    document.querySelector("#next-days").innerHTML = null;
+    let forecastDays = null;
 
+    for (let index = 1; index < 5; index++) {
+    forecastDays = response.data.daily[index];
+
+    let weatherID = forecastDays.weather[0].id;
+    document.querySelector("#next-days").innerHTML += 
+  `<div class="card" id="forecast-days">
+      <div class="card-body text-center">
+        <p class="card-text">${formatDays(forecast.dt * 1000)}</p>
+          <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" id="current-weather-icon" />
+        <p class="card-text" id="degrees">${Math.round(forecast.temp.min)}°C/${Math.round(forecast.temp.max)}°C</p>
+      </div>
+  </div>`
+}
+}
+
+  function getDailyForecast(latitude, longitude) {
+    let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
+    apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(showForecastDays);
+    console.log(response);
+}
+    
+//test
 
 function searchCity(city) {
   let units = "metric";
@@ -116,9 +129,7 @@ function handleSubmit(event) {
 function searchLocation(position) {
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(displayWeatherCondition);
-
 }
 
 
@@ -129,8 +140,7 @@ function getCurrentLocation(event) {
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
-
 let currentLocationButton = document.querySelector(".current-location");
 currentLocationButton.addEventListener("click", getCurrentLocation);
-
 searchCity("Oslo");
+
