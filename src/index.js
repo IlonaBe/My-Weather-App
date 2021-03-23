@@ -83,7 +83,7 @@ function displayForecast(response){
               ${Math.round(forecast.main.temp)}°C
                </div>
               <div class="col text-start" id="hour-icon">
-                <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="SunCloudSnow" width="40px" />
+                <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="SunCloudSnow" width="50px" />
               </div>
             </div>         
       `;  
@@ -101,8 +101,8 @@ function displayForecast(response){
   `<div class="card" id="forecast-days">
       <div class="card-body text-center">
         <p class="card-text">${formatDays(forecastDays.dt * 1000)}</p>
-          <img src="https://openweathermap.org/img/wn/${forecastDays.weather[0].icon}@2x.png" alt="SunCloudSnow" width="50px" id="current-weather-icon" />
-        <p class="card-text" id="degrees">${Math.round(forecastDays.temp.min)}°C/${Math.round(forecastDays.temp.max)}°C</p>
+          <img src="https://openweathermap.org/img/wn/${forecastDays.weather[0].icon}@2x.png" alt="SunCloudSnow" width="80px" id="current-weather-icon" />
+        <p class="card-text" id="degrees">${Math.round(forecastDays.temp.min)}°C /${Math.round(forecastDays.temp.max)}°C</p>
       </div>
   </div>`
 }
