@@ -1,7 +1,16 @@
 function formatDays (timestamp) {
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ];
   let now = new Date(timestamp);
   let day = days [now.getDay()];
-  return `${day} ${formatHours(timestamp)}`;
+  return `${day}`;
 }
 
 function formatHours(timestamp) {
@@ -53,6 +62,8 @@ function displayWeatherCondition(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   )
   console.log(response);
+
+  getDailyForecast(response.data.coord.lat, response.data.coord.lon);
   }
 
 function displayForecast(response){
@@ -79,22 +90,19 @@ function displayForecast(response){
     }
   }
 
-  //test
-
   function showForecastDays(response){
     document.querySelector("#next-days").innerHTML = null;
     let forecastDays = null;
 
-    for (let index = 1; index < 5; index++) {
+    for (let index = 1; index < 6; index++) {
     forecastDays = response.data.daily[index];
-
     let weatherID = forecastDays.weather[0].id;
     document.querySelector("#next-days").innerHTML += 
   `<div class="card" id="forecast-days">
       <div class="card-body text-center">
-        <p class="card-text">${formatDays(forecast.dt * 1000)}</p>
-          <img src="Images/SunCloudSnow.png" alt="SunCloudSnow" width="50px" id="current-weather-icon" />
-        <p class="card-text" id="degrees">${Math.round(forecast.temp.min)}°C/${Math.round(forecast.temp.max)}°C</p>
+        <p class="card-text">${formatDays(forecastDays.dt * 1000)}</p>
+          <img src="https://openweathermap.org/img/wn/${forecastDays.weather[0].icon}@2x.png" alt="SunCloudSnow" width="50px" id="current-weather-icon" />
+        <p class="card-text" id="degrees">${Math.round(forecastDays.temp.min)}°C/${Math.round(forecastDays.temp.max)}°C</p>
       </div>
   </div>`
 }
@@ -104,10 +112,7 @@ function displayForecast(response){
     let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
     apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(showForecastDays);
-    console.log(response);
 }
-    
-//test
 
 function searchCity(city) {
   let units = "metric";
