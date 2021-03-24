@@ -112,6 +112,7 @@ function displayForecast(response){
     axios.get(apiUrl).then(showForecastDays);
 }
 
+
 function searchCity(city) {
   let units = "metric";
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
@@ -127,6 +128,9 @@ function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search").value;
   searchCity(city);
+  if (city === "") {
+    alert ("Please enter a city");
+  }
 }
 
 function searchLocation(position) {
