@@ -48,6 +48,10 @@ function displayWeatherCondition(response) {
   let dateAndTime = document.querySelector("#date");
   dateAndTime.innerHTML = formatDate(response.data.dt * 1000);
   let weatherNowIcon = document.querySelector("#weatherNowIcon");
+  weatherNowIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  )
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector(".weather-now p").innerHTML = Math.round(
     response.data.main.temp
@@ -57,21 +61,16 @@ function displayWeatherCondition(response) {
     response.data.wind.speed
   );
 
-  weatherNowIcon.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  )
   console.log(response);
-
   getDailyForecast(response.data.coord.lat, response.data.coord.lon);
   }
+
 
 function displayForecast(response){
   let forecastHours = document.querySelector("#hours-forecast");
   forecastHours.innerHTML = null;
   let forecast = null;
   console.log(forecast);
-
   for (let index = 0; index < 4; index++) {
     forecast = response.data.list[index];
         forecastHours.innerHTML += `        
@@ -96,7 +95,6 @@ function displayForecast(response){
 
     for (let index = 1; index < 6; index++) {
     forecastDays = response.data.daily[index];
-    let weatherID = forecastDays.weather[0].id;
     document.querySelector("#next-days").innerHTML += 
   `<div class="card" id="forecast-days">
       <div class="card-body text-center">
@@ -135,6 +133,9 @@ function searchLocation(position) {
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 
