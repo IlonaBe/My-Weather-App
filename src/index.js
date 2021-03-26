@@ -63,7 +63,6 @@ function displayWeatherCondition(response) {
 
   console.log(response);
   getDailyForecast(response.data.coord.lat, response.data.coord.lon);
-  getCurrentLocation(response.data.coord.lat, response.data.coord.lon);
   }
 
 
@@ -129,10 +128,25 @@ function searchCity(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search").value;
-  searchCity(city);
   if (city === "") {
     alert ("Please enter a city");
+  } else {
+     axios
+      .get(searchCity(city))
+      .then(function (response) {
+        displayForecast(response, "search");
+      })
+      .catch(function (error) {
+        alert(
+          `Unfortunately, we couldn't find a city named ${city}.`
+        );
+      });
   }
+}
+
+function buildCityApiUrl(city) {
+  let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
+  return `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=metric`;
 }
 
 function searchLocation(position) {
