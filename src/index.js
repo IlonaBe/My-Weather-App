@@ -112,11 +112,8 @@ function displayForecast(response){
   function getDailyForecast(latitude, longitude) {
     let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
     apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(showForecastDays);
-    
+    axios.get(apiUrl).then(showForecastDays);    
 }
-
-
 
 function searchCity(city) {
   let units = "metric";
@@ -152,17 +149,14 @@ function searchLocation(position) {
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
-
   url = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(url).then(displayForecast);
 }
-
 
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 let currentLocationButton = document.querySelector(".current-location");
