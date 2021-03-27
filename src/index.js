@@ -1,9 +1,4 @@
 
-function showIcon(iconCode) {
-  return `${weatherIcons}${iconCode}.svg`;
-}
-//test
-
 function formatDays (timestamp) {
   let days = [
     "Sun",
