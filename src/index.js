@@ -123,8 +123,12 @@ function searchCity(city) {
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayWeatherCondition);
-
+  axios
+  .get(apiUrl)
+  .then(displayWeatherCondition)
+  .catch(function (error) {
+      alert(`Unfortunately, we couldn't find a city named ${city}.`);
+    });
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -135,18 +139,9 @@ function handleSubmit(event) {
   if (city.length === 0) {
     alert ("Please enter a city");
   } else {
-     axios
-      .get(searchCity(city))
-      .then(function (response) {
-        displayForecast(response, "search");
-      })
-      .catch(function (error) {
-        alert(
-          `Unfortunately, we couldn't find a city named ${city}.`
-        );
-      });
+    searchCity(city);
   }
-}
+} 
 
 function buildCityApiUrl(city) {
   let apiKey = "09b98a8b6fbfa8f93e206c9bfb83f786";
