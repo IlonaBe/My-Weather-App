@@ -127,7 +127,7 @@ function searchCity(city) {
   .get(apiUrl)
   .then(displayWeatherCondition)
   .catch(function (error) {
-      alert(`Unfortunately, we couldn't find a city named ${city}.`);
+      alert(`Unfortunately, we couldn't find a city named "${city}".`);
     });
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
