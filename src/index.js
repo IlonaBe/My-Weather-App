@@ -54,6 +54,7 @@ function displayWeatherCondition(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   )
   document.querySelector("h1").innerHTML = response.data.name;
+  document.querySelector("#weather-description").innerHTML = `${response.data.weather[0].description}`;
   document.querySelector(".weather-now p").innerHTML = Math.round(
     response.data.main.temp
   );

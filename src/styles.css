@@ -29,10 +29,9 @@ body {
   margin-right: 3px;
 }
 
-#current-city .card-body-city p {
+#date {
   font-size: 16px;
-  padding: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 1px;
 }
 
 .weather-now p {
@@ -41,7 +40,12 @@ body {
   margin-left: 25px;
 }
 
-.weather-now img {
+#weather-description {
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+#weatherNowIcon {
   margin-top: -30px;
   display: inline;
   margin-left: 20px;
