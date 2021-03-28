@@ -5,7 +5,7 @@ body {
   margin: 10px auto;
   margin-bottom: 0px;
   width: 300px;
-  height: 40px;
+  height: 50px;
 }
 
 .container-1 {
@@ -17,10 +17,11 @@ body {
 
 .container-1 input#search {
   width: 300px;
-  height: 30px;
+  height: 38px;
   background-color: rgba(245, 245, 245, 0.1) !important;
   border: 1px solid #3b3a52;
-  font-size: 9pt;
+  font-size: 10pt;
+  margin-left: 10px;
   font-family: "Nixie One", cursive;
   letter-spacing: 1px;
   float: left;
@@ -42,8 +43,8 @@ body {
 .container-1 .btn {
   position: absolute;
   top: 50%;
-  margin-left: -3px;
-  margin-top: -20px;
+  margin-left: 7px;
+  margin-top: -17px;
   z-index: 1;
   color: #3b3a52;
   outline: none;

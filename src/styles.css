@@ -42,7 +42,7 @@ body {
 
 #weather-description {
   font-size: 13px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 #weatherNowIcon {
@@ -62,7 +62,7 @@ body {
   font-size: 34px;
   font-weight: 600;
   text-transform: capitalize;
-  height: 60px;
+  height: 40px;
   padding: 3px;
   margin-top: 10px;
 }
