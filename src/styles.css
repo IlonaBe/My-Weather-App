@@ -20,7 +20,7 @@ body {
 }
 
 #current-city {
-  width: 250px;
+  width: 247px;
   height: 340px;
   text-align: center;
   border-radius: 10px;
@@ -63,13 +63,12 @@ body {
   font-weight: 600;
   text-transform: capitalize;
   height: 60px;
-  padding: 5px;
-  margin: 2px;
+  padding: 3px;
   margin-top: 10px;
 }
 
 #weather-hours {
-  width: 219px;
+  width: 220px;
   height: 340px;
   font-size: 17px;
   border-radius: 10px;
@@ -107,12 +106,17 @@ body {
 #next-days .card {
   height: 280px;
   background-color: rgba(245, 245, 245, 0.1) !important;
+  border-radius: 10px;
+  margin: 1px;
+  margin-top: 10px;
 }
 
 #next-days .card-body {
   line-height: 70px;
   font-size: 22px;
-  padding: 5px;
+  padding: 3px;
+  border: 1px solid #3b3a52;
+  border-radius: 10px;
 }
 
 #weather-icon {
